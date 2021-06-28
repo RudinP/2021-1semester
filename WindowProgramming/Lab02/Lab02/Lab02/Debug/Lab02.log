@@ -1,0 +1,6 @@
+﻿  quiz1.cpp
+  quiz2.cpp
+  quiz3.cpp
+C:\Users\user\Documents\2021-1학기\윈프\Lab02\Lab02\Lab02\quiz3.cpp(27,13): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+  코드를 생성하고 있습니다...
+  Lab02.vcxproj -> C:\Users\user\Documents\2021-1학기\윈프\Lab02\Lab02\Debug\Lab02.exe

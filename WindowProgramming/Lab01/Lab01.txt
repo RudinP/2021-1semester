@@ -1,0 +1,90 @@
+<Lab01_1>
+/* 이 프로그램은 정수 n을 매개변수로 받아
+(1! + 2! + ... + n!)를 계산하여 출력하도록 되어 있다.
+factorial(n)은 n!을 리턴한다.
+fact_sum(n)은 1! + 2! + ... + n!을 리턴한다. */
+
+#include <iostream>
+using namespace std;
+#include <stdio.h>
+
+int factorial(int n) {
+	int i, prod;
+	for (i = 2; i <= n; i++)
+		prod *= i;
+	return prod;
+}
+
+int fact_sum (int n) {
+	int i, sum;
+	sum = 0;
+	for (i = n; i > 0; i--)
+		sum += factorial(n);
+	return sum;
+}
+void main() {
+	int number, sum;
+	cout << "Input a number (< 7): ";
+	scanf("%d", number);
+	sum = fact_sum(number);
+	cout << "Sum is " << sum << endl;
+}
+
+<Lab01_2>
+#include <iostream>
+using namespace std;
+struct BigInt {
+	int digits[100];
+	int ndigits;
+};
+// Converts digit strings into BigInt structures.
+// e.g.) "123" ==> (digits = [3, 2, 1], ndigits = 3)
+void convert(BigInt *p, char *s) {
+	int n = 0;
+	while (*s++ != '\0’) // Find the end of
+		n++; 		//the string s
+	
+	p->ndigits = n;
+	while (n >= 0)
+	p->digits[n--] = *s--;
+} 
+
+// Prints BigInt structures.
+// e.g.) For (digits = [3, 2, 1], ndigits = 3),
+// it displays "123“
+void print(BigInt x) {
+	int n = x.ndigits;
+	while (--n >= 0)
+		cout << x.digits[n];
+}
+// Prints "a = 123456789123456789"
+void main() {
+	BigInt a;
+	convert(&a, "123456789123456789");
+	cout << "a = ";
+	print(a);
+	cout << endl;
+}
+
+
+
+<Lab01_3>
+#include <iostream>
+using namespace std;
+#include <stdlib.h>
+#include <time.h>
+// 배열 s[]에 1에서 9까지의 숫자를 랜덤하게 배열한 문자열을 넣기 위해 s[i]에 랜덤한
+// 숫자를 넣은 후, s[] 상의 다른 칸에 있는 숫자와 겹칠 경우, i 값을 후퇴시킨 다음
+// 새로 s[i]를 정하는 방법을 사용한다.
+void main() {
+	char s[10];
+	s[9] = '\0';
+	srand((unsigned) time(NULL));
+	for (int i = 0; i < 9; i++) {
+		s[i] = rand() % 9 + '1';
+		for (int j = 0; j < 9; j++)
+			if (s[i] == s[j])
+				i--;
+	}
+	cout << "s = " << s << endl;
+}

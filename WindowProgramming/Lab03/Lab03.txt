@@ -1,0 +1,37 @@
+#include <iostream>
+
+using namespace std;
+
+struct Stack {
+	char* store;
+	int capacity;
+	int top;
+};
+
+int create(Stack& s, int size = 100) {
+	s.capacity = size;
+	s.top = 0;
+	return (s.store = new char[size]) != 0;
+}
+
+// If the stack is full, then push val onto the stack s and return 1,
+// otherwise simply return 0 to indicate a failure of the push operation
+void push(Stack& s, char val) {
+	if (s.top < s.capacity)
+		s.store[s.top++] = val;
+	else
+		cerr << "Error: stack full, can't push" << endl;
+}
+
+char pop(Stack& s) {
+	if (s.top > 0)
+		return s.store[--s.top];
+	else {
+		cerr << "Error: pop from an empty stack" << endl;
+		return 0;
+	}
+}
+
+int isempty(Stack& s) {
+	return s.top == 0;
+}
